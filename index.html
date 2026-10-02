@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH LAB MAGAZINE - 인터랙티브 수학 탐구 포털</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Playfair Display, Noto Serif KR, Outfit, Noto Sans KR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0b0f17] text-slate-100 font-sans min-h-screen flex flex-col select-none">
+
+    <!-- Magazine Top Banner -->
+    <div class="border-b border-white/10 bg-slate-950 text-center py-2 text-[11px] tracking-widest uppercase text-slate-400 font-['Outfit'] flex items-center justify-center gap-4">
+        <span>VOL. 01 // EDITORIAL ISSUE</span>
+        <span class="text-white/20">•</span>
+        <span class="text-indigo-400 font-semibold">INTERACTIVE MATHEMATICS LAB</span>
+        <span class="text-white/20">•</span>
+        <span>ACADEMIC YEAR 2026</span>
+    </div>
+
+    <!-- Header & Navigation Bar -->
+    <header class="border-b border-white/10 bg-[#0b0f17]/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            
+            <!-- Magazine Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-white text-slate-950 flex items-center justify-center text-xl font-bold font-editorial group-hover:scale-105 transition shadow-lg">
+                    M
+                </div>
+                <div>
+                    <span class="font-editorial text-2xl font-black italic tracking-wider text-white uppercase block leading-none">MATH LAB.</span>
+                    <span class="text-[9px] uppercase tracking-widest text-slate-400 font-['Outfit'] mt-1 block">Digital Exploration Hub</span>
+                </div>
+            </a>
+
+            <!-- Issue Tag & Counter -->
+            <div class="hidden sm:flex items-center gap-4">
+                <span class="text-xs text-slate-400 font-['Outfit'] uppercase tracking-widest">
+                    CURATED LESSONS: <strong class="text-white font-extrabold text-sm ml-1">02 ARTICLES</strong>
+                </span>
+                <span class="w-px h-4 bg-white/20"></span>
+                <span class="text-xs text-indigo-400 font-semibold uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/30 px-3 py-1 rounded-full">
+                    K-12 Math Series
+                </span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Editorial Hero Cover Section -->
+    <section class="relative border-b border-white/10 bg-gradient-to-b from-slate-950 via-[#0b0f17] to-[#0b0f17] py-16 sm:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(99,102,241,0.12),transparent_70%)] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative">
+            <p class="text-xs sm:text-sm font-['Outfit'] tracking-[0.3em] uppercase text-indigo-400 font-semibold">
+                — VISUAL & INTERACTIVE EXPERIENCE —
+            </p>
+
+            <h1 class="font-editorial text-4xl sm:text-6xl md:text-7xl font-black text-white tracking-tight leading-[1.1]">
+                The Beauty of <br class="hidden sm:inline">
+                <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-indigo-300">Pure Mathematics.</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-sm sm:text-base text-slate-400 font-light leading-relaxed">
+                공식 암기를 넘어 직관적 시뮬레이션과 드래그 인터랙션으로 깨우치는 수학적 깊이. <br class="hidden sm:inline">
+                패션 잡지처럼 깔끔하고 우아한 디지털 탐구 플랫폼을 만나보세요.
+            </p>
+
+            <!-- Filter Tabs -->
+            <div class="pt-6 flex flex-wrap items-center justify-center gap-2">
+                <button class="filter-btn active text-xs px-5 py-2.5 rounded-full transition" data-filter="all">
+                    ALL ARTICLES
+                </button>
+                <button class="filter-btn text-xs px-5 py-2.5 rounded-full transition" data-filter="stats">
+                    STATISTICS & PROBABILITY
+                </button>
+                <button class="filter-btn text-xs px-5 py-2.5 rounded-full transition" data-filter="geo">
+                    GEOMETRY & COORDINATES
+                </button>
+                <button class="filter-btn text-xs px-5 py-2.5 rounded-full transition" data-filter="algebra">
+                    FUNCTIONS & GRAPHS
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content: Editorial Article Cards Grid -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-12 sm:px-6 lg:px-8 space-y-10">
+        
+        <div class="flex items-end justify-between border-b border-white/10 pb-4">
+            <div>
+                <span class="text-xs tracking-widest text-indigo-400 font-['Outfit'] uppercase block font-semibold">CURATED COLLECTION</span>
+                <h2 class="font-editorial text-2xl sm:text-3xl font-bold text-white mt-1">
+                    featured 탐구 아티클
+                </h2>
+            </div>
+            <span class="text-xs text-slate-400 font-['Outfit'] tracking-wider uppercase">
+                SHOWING <strong id="card-count" class="text-white font-bold">3</strong> STORIES
+            </span>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Card 1: Probability & Statistics -->
+            <article class="lesson-card magazine-card group border border-white/10 rounded-2xl p-7 flex flex-col justify-between space-y-6 relative overflow-hidden" data-category="stats">
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-editorial text-3xl font-black italic text-indigo-400 opacity-80 group-hover:opacity-100 transition">
+                            01
+                        </span>
+                        <span class="text-[11px] font-['Outfit'] uppercase tracking-widest px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                            STATISTICS
+                        </span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-2xl block">🪙</span>
+                        <h3 class="font-editorial text-xl sm:text-2xl font-bold text-white group-hover:text-indigo-300 transition leading-snug">
+                            확률적 통계와 대수의 법칙
+                        </h3>
+                        <p class="text-xs text-slate-400 font-light leading-relaxed">
+                            동전 던지기 수천 회의 고속 대량 시뮬레이션을 통해 통계적 상대도수가 이론적 수학적 확률(0.5)로 점진적으로 수렴하는 대수의 법칙 현상을 관찰합니다.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-400 bg-slate-900 border border-white/10 px-2.5 py-1 rounded">수학적 확률</span>
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-400 bg-slate-900 border border-white/10 px-2.5 py-1 rounded">통계적 확률</span>
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-indigo-300 bg-indigo-950/60 border border-indigo-500/30 px-2.5 py-1 rounded">대수의 법칙</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] text-slate-500 font-['Outfit'] tracking-wider uppercase">INTERACTIVE LAB</span>
+                    <a href="probability.html" class="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-indigo-300 font-['Outfit'] tracking-wider uppercase group-hover:translate-x-1 transition">
+                        <span>EXPLORE ARTICLE</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 2: Pythagoras & Distance -->
+            <article class="lesson-card magazine-card group border border-white/10 rounded-2xl p-7 flex flex-col justify-between space-y-6 relative overflow-hidden" data-category="geo">
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-editorial text-3xl font-black italic text-purple-400 opacity-80 group-hover:opacity-100 transition">
+                            02
+                        </span>
+                        <span class="text-[11px] font-['Outfit'] uppercase tracking-widest px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/30">
+                            GEOMETRY
+                        </span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-2xl block">📐</span>
+                        <h3 class="font-editorial text-xl sm:text-2xl font-bold text-white group-hover:text-purple-300 transition leading-snug">
+                            피타고라스 정리와 두 점 사이의 거리
+                        </h3>
+                        <p class="text-xs text-slate-400 font-light leading-relaxed">
+                            좌표평면 위의 두 점 A, B를 마우스나 터치로 자유롭게 드래그하며 직각삼각형의 빗변 피타고라스 정리로부터 거리 공식이 자연스럽게 유도되는 과정을 체험합니다.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-400 bg-slate-900 border border-white/10 px-2.5 py-1 rounded">피타고라스 정리</span>
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-400 bg-slate-900 border border-white/10 px-2.5 py-1 rounded">좌표평면 작도</span>
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-purple-300 bg-purple-950/60 border border-purple-500/30 px-2.5 py-1 rounded">거리 공식 유도</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] text-slate-500 font-['Outfit'] tracking-wider uppercase">CANVAS INTERACTION</span>
+                    <a href="pythagoras.html" class="inline-flex items-center gap-2 text-xs font-bold text-white hover:text-purple-300 font-['Outfit'] tracking-wider uppercase group-hover:translate-x-1 transition">
+                        <span>EXPLORE ARTICLE</span>
+                        <span>→</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Card 3: Upcoming Lesson -->
+            <article class="lesson-card magazine-card group border border-white/5 bg-slate-950/40 rounded-2xl p-7 flex flex-col justify-between space-y-6 relative overflow-hidden opacity-60" data-category="algebra">
+                <div class="space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="font-editorial text-3xl font-black italic text-slate-600">
+                            03
+                        </span>
+                        <span class="text-[11px] font-['Outfit'] uppercase tracking-widest px-3 py-1 rounded-full bg-slate-800 text-slate-400">
+                            COMING SOON
+                        </span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <span class="text-2xl block opacity-50">📈</span>
+                        <h3 class="font-editorial text-xl sm:text-2xl font-bold text-slate-300">
+                            이차함수 그래프와 평행이동
+                        </h3>
+                        <p class="text-xs text-slate-500 font-light leading-relaxed">
+                            포물선의 꼭짓점 수식 y = a(x-p)² + q 변수 조작을 통해 그래픽컬한 위치 변화와 계수의 의미를 학습합니다.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-600 bg-slate-950 border border-white/5 px-2.5 py-1 rounded">이차함수</span>
+                        <span class="text-[10px] font-['Outfit'] uppercase tracking-wider text-slate-600 bg-slate-950 border border-white/5 px-2.5 py-1 rounded">평행이동</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                    <span class="text-[11px] text-slate-600 font-['Outfit'] tracking-wider uppercase">IN PREPARATION</span>
+                    <button disabled class="cursor-not-allowed text-xs font-bold text-slate-600 font-['Outfit'] tracking-wider uppercase">
+                        LOCKED 🔒
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Editorial Footer -->
+    <footer class="border-t border-white/10 bg-slate-950 py-8 text-center text-xs text-slate-500 space-y-2">
+        <p class="font-editorial text-lg italic text-slate-300 font-bold">MATH LAB MAGAZINE</p>
+        <p class="font-['Outfit'] tracking-wider text-[11px] uppercase">Designed for Educators & Students — Interactive Mathematics Portal</p>
+    </footer>
+
+    <!-- Filter JS Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const lessonCards = document.querySelectorAll('.lesson-card');
+            const cardCountElem = document.getElementById('card-count');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+                    let visibleCount = 0;
+
+                    lessonCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            card.style.display = 'flex';
+                            visibleCount++;
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    if (cardCountElem) {
+                        cardCountElem.textContent = visibleCount;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH LAB MAGAZINE - 피타고라스 정리와 두 점 사이의 거리</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Playfair Display, Noto Serif KR, Outfit, Noto Sans KR) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#0b0f17] text-slate-100 font-sans min-h-screen flex flex-col select-none">
+
+    <!-- Magazine Global Header -->
+    <header class="border-b border-white/10 bg-[#0b0f17]/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+            
+            <!-- Magazine Logo -> Back to Lobby -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-full bg-white text-slate-950 flex items-center justify-center font-editorial font-extrabold group-hover:scale-105 transition shadow-lg">
+                    M
+                </div>
+                <div>
+                    <span class="font-editorial text-xl font-black italic tracking-wider text-white uppercase block leading-none">MATH LAB.</span>
+                    <span class="text-[9px] uppercase tracking-widest text-purple-400 font-['Outfit'] mt-0.5 block">ARTICLE // 02. GEOMETRY</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <div class="flex items-center gap-2">
+                <a href="probability.html" class="bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-xs font-['Outfit'] tracking-wider uppercase px-3.5 py-2 rounded-full border border-white/10 transition">
+                    ← PREV ARTICLE
+                </a>
+                <a href="index.html" class="bg-white hover:bg-slate-200 text-slate-950 text-xs font-['Outfit'] font-bold tracking-wider uppercase px-3.5 py-2 rounded-full shadow-lg transition">
+                    INDEX ☰
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Sub Header Article Title Banner -->
+    <section class="bg-slate-950/80 border-b border-white/10 py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="space-y-1">
+                <span class="text-xs font-['Outfit'] tracking-widest text-purple-400 uppercase font-semibold">LESSON 02 // CANVAS GEOMETRY INTERACTION</span>
+                <h1 class="font-editorial text-2xl sm:text-4xl font-bold text-white tracking-tight">피타고라스 정리와 두 점 사이의 거리</h1>
+                <p class="text-xs text-slate-400 font-light">좌표평면 위 직각삼각형 빗변 피타고라스 정리로부터 유도되는 거리 공식의 직관적 증명</p>
+            </div>
+            <div class="bg-slate-900 border border-white/10 px-4 py-2 rounded-xl text-xs text-slate-300 font-['Outfit']">
+                <span>PYTHAGOREAN FORMULA:</span>
+                <span class="font-bold text-amber-400 text-sm ml-1.5 font-mono">a² + b² = c²</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 sm:px-6 lg:px-8 space-y-6">
+
+        <!-- Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Left: Interactive Canvas -->
+            <div class="lg:col-span-7 bg-slate-900/60 border border-white/10 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur flex flex-col justify-between space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
+                    <div>
+                        <h2 class="font-editorial text-xl font-bold text-white flex items-center gap-2">
+                            📍 직교좌표평면 탐구 캔버스
+                        </h2>
+                        <p class="text-xs text-slate-400 font-light">점 A(파란색)와 점 B(주황색)를 마우스나 손가락으로 드래그하여 좌표를 이동하세요.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs text-slate-300 font-medium bg-slate-950 px-3 py-1.5 rounded-lg border border-white/10 font-['Outfit']">
+                            <input type="checkbox" id="snap-grid-toggle" checked class="rounded border-slate-700 text-indigo-600 focus:ring-indigo-500 bg-slate-800">
+                            <span>GRID SNAP (정수)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Canvas Box -->
+                <div class="relative w-full aspect-square max-h-[500px] bg-slate-950 rounded-xl overflow-hidden border border-white/10 shadow-inner flex items-center justify-center">
+                    <canvas id="gridCanvas" class="w-full h-full cursor-grab active:cursor-grabbing"></canvas>
+                    
+                    <div class="absolute bottom-3 left-3 bg-slate-900/90 backdrop-blur border border-white/10 px-3 py-1.5 rounded-lg text-[11px] text-slate-300 flex items-center gap-2 pointer-events-none shadow-lg font-['Outfit']">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>DRAG POINTS A AND B TO SEE LIVE CALCULATIONS</span>
+                    </div>
+                </div>
+
+                <!-- Live Point Coords -->
+                <div class="grid grid-cols-2 gap-3 text-center font-mono">
+                    <div class="bg-indigo-950/60 border border-indigo-500/40 rounded-xl p-2.5">
+                        <p class="text-xs font-semibold text-indigo-300 font-['Outfit']">POINT A (x₁, y₁)</p>
+                        <p id="point-a-coords" class="text-base sm:text-lg font-black text-indigo-400 mt-0.5">( -3 , -2 )</p>
+                    </div>
+                    <div class="bg-amber-950/60 border border-amber-500/40 rounded-xl p-2.5">
+                        <p class="text-xs font-semibold text-amber-300 font-['Outfit']">POINT B (x₂, y₂)</p>
+                        <p id="point-b-coords" class="text-base sm:text-lg font-black text-amber-400 mt-0.5">( 3 , 4 )</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Live Pythagoras Calculator & Mission Panel -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- Live Pythagoras Calculation Board -->
+                <div class="bg-slate-900/60 border border-white/10 rounded-2xl p-6 shadow-2xl space-y-4">
+                    <h2 class="font-editorial text-lg font-bold text-white flex items-center justify-between border-b border-white/10 pb-3">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            실시간 피타고라스 계산판
+                        </span>
+                        <span class="text-xs text-purple-400 font-mono">a² + b² = c²</span>
+                    </h2>
+
+                    <!-- Step 1 -->
+                    <div class="bg-slate-950/80 border border-white/10 rounded-xl p-3.5 space-y-1">
+                        <p class="text-xs font-bold text-slate-400 font-['Outfit'] uppercase">[STEP 1] 가로 및 세로 변의 길이</p>
+                        <div class="flex items-center justify-between text-xs sm:text-sm">
+                            <span class="text-cyan-400 font-semibold">가로 (밑변 a): |x₂ - x₁|</span>
+                            <span id="calc-base" class="font-bold text-white font-mono">|3 - (-3)| = 6</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs sm:text-sm">
+                            <span class="text-emerald-400 font-semibold">세로 (높이 b): |y₂ - y₁|</span>
+                            <span id="calc-height" class="font-bold text-white font-mono">|4 - (-2)| = 6</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-slate-950/80 border border-white/10 rounded-xl p-3.5 space-y-1.5">
+                        <p class="text-xs font-bold text-slate-400 font-['Outfit'] uppercase">[STEP 2] 피타고라스 정리 수식 대입 (a² + b²)</p>
+                        <div class="text-xs sm:text-sm font-mono text-slate-300">
+                            <span id="calc-pythagoras-expr" class="text-white font-bold">6² + 6² = 36 + 36 = 72</span>
+                        </div>
+                        <p class="text-[11px] text-slate-500">빗변의 제곱 c² = <span id="calc-c-squared" class="font-bold text-amber-300 font-mono">72</span></p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-gradient-to-r from-purple-950/90 to-indigo-950/80 border border-purple-500/50 rounded-xl p-4 space-y-2">
+                        <p class="text-xs font-extrabold text-purple-300 font-['Outfit'] uppercase">[STEP 3] 두 점 A, B 사이의 거리 (d = √c²)</p>
+                        <div class="flex items-baseline justify-between">
+                            <span class="text-xs text-slate-300 font-mono">d = √[(x₂-x₁)² + (y₂-y₁)²]</span>
+                            <div class="text-right">
+                                <p id="calc-distance-sqrt" class="text-xl sm:text-2xl font-black text-amber-400 tracking-tight font-mono">√72</p>
+                                <p id="calc-distance-approx" class="text-xs font-bold text-emerald-300 font-mono">≈ 8.485</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preset Mission Buttons -->
+                <div class="bg-slate-900/60 border border-white/10 rounded-2xl p-6 shadow-2xl space-y-3">
+                    <h2 class="font-editorial text-lg font-bold text-white border-b border-white/10 pb-3">탐구 미션 프리셋</h2>
+                    
+                    <div class="grid grid-cols-2 gap-2">
+                        <button id="btn-preset-345" class="btn-action bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-md transition flex items-center justify-center gap-1 font-['Outfit']">
+                            <span>📐 3-4-5 TRIANGLE</span>
+                        </button>
+                        <button id="btn-preset-51213" class="btn-action bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-bold py-2.5 px-3 rounded-xl border border-white/10 transition flex items-center justify-center gap-1 font-['Outfit']">
+                            <span>📏 5-12-13 TRIANGLE</span>
+                        </button>
+                        <button id="btn-preset-horizontal" class="btn-action bg-slate-800 hover:bg-slate-700 text-slate-100 text-xs font-bold py-2.5 px-3 rounded-xl border border-white/10 transition flex items-center justify-center gap-1 font-['Outfit']">
+                            <span>➖ HORIZONTAL</span>
+                        </button>
+                        <button id="btn-preset-reset" class="btn-action bg-rose-950/50 hover:bg-rose-900 border border-rose-700/50 text-rose-300 text-xs font-semibold py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1 font-['Outfit']">
+                            <span>🔄 RESET</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Questions Box -->
+        <section class="bg-gradient-to-r from-slate-900/90 via-slate-900/95 to-purple-950/80 border border-white/10 rounded-2xl p-7 shadow-2xl space-y-5">
+            <div class="flex items-center gap-3 border-b border-white/10 pb-4">
+                <span class="text-2xl">🧠</span>
+                <div>
+                    <h2 class="font-editorial text-xl font-extrabold text-white">EDITORIAL DISCUSSION Q&A</h2>
+                    <p class="text-xs text-slate-400 font-light">좌표평면 위에서 점을 조작해 본 후 아래 질문에 대해 깊이 생각해 보세요.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="bg-slate-950/80 border border-white/10 rounded-xl p-5 space-y-3">
+                    <div class="flex items-start gap-2">
+                        <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-black text-xs font-['Outfit']">Q1</span>
+                        <h3 class="font-bold text-slate-200 text-sm leading-relaxed">
+                            "두 점 사이의 거리를 구할 때 왜 직각삼각형을 이용할까요?"
+                        </h3>
+                    </div>
+                    
+                    <button class="toggle-answer-btn text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition" data-target="pyth-ans-1">
+                        <span>🔍 예시 답안 및 개념 보기</span>
+                    </button>
+                    
+                    <div id="pyth-ans-1" class="hidden bg-slate-900/90 border border-white/10 p-3.5 rounded-lg text-xs text-slate-300 leading-relaxed space-y-1">
+                        <p class="font-bold text-indigo-300">[수학적 기하 연결성]</p>
+                        <p>좌표평면 위 선분의 길이를 직접 재기 어렵지만, x축과 y축에 평행한 보조선을 그으면 항상 <strong>직각삼각형</strong>이 만들어지기 때문입니다.</p>
+                        <p class="text-slate-400">가로와 세로의 길이는 좌표의 차이로 손쉽게 얻을 수 있으므로 피타고라스 정리를 적용해 빗변(거리)을 구합니다.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-950/80 border border-white/10 rounded-xl p-5 space-y-3">
+                    <div class="flex items-start gap-2">
+                        <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-black text-xs font-['Outfit']">Q2</span>
+                        <h3 class="font-bold text-slate-200 text-sm leading-relaxed">
+                            "피타고라스 정리(a² + b² = c²)와 '두 점 사이의 거리 공식'은 어떤 관계가 있나요?"
+                        </h3>
+                    </div>
+
+                    <button class="toggle-answer-btn text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition" data-target="pyth-ans-2">
+                        <span>🔍 예시 답안 및 개념 보기</span>
+                    </button>
+
+                    <div id="pyth-ans-2" class="hidden bg-slate-900/90 border border-white/10 p-3.5 rounded-lg text-xs text-slate-300 leading-relaxed space-y-1">
+                        <p class="font-bold text-amber-300">[공식 유도 관계]</p>
+                        <p>거리 공식 <strong>d = √[(x₂ - x₁)² + (y₂ - y₁)²]</strong>은 피타고라스 정리 <strong>c = √(a² + b²)</strong>의 변 $a, b$ 위치에 가로 $|x₂ - x₁|$과 세로 $|y₂ - y₁|$을 그대로 대입한 <strong>동일한 식</strong>입니다.</p>
+                        <p class="text-slate-400">즉, 공식 암기 없이 피타고라스 원리 하나로 거리 공식을 항상 유도할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 bg-slate-950 py-6 text-center text-xs text-slate-500 space-y-1">
+        <p class="font-editorial text-sm italic text-slate-300">MATH LAB MAGAZINE // ARTICLE 02</p>
+    </footer>
+
+    <!-- JS -->
+    <script src="js/pythagoras.js"></script>
+</body>
+</html>
